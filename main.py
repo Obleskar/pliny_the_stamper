@@ -1,5 +1,13 @@
-from os.path import join
+from os import scandir
 from marisol import Marisol
+
+
+def get_input_files(input_dir='input_files'):
+    """Get a list of path-like objects that represent the files to be ingested.
+
+    Ignore all files lacking a .pdf extension.
+    """
+    return [file_path for file_path in scandir(input_dir) if file_path.name.endswith('.pdf')]
 
 
 def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1):
