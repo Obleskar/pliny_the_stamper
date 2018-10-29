@@ -24,6 +24,7 @@ def merge_pdfs(files):
             pdf_merger.append(infile)
         # todo: Add post-merge renaming capability.
         with open('output_file.pdf', 'wb') as outfile:
+            # todo: Output merged PDFs to a parameter-defined directory.
             pdf_merger.write(outfile)
 
 
