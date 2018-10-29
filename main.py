@@ -1,5 +1,6 @@
 from marisol import Marisol
 from os import scandir
+from PyPDF2 import PdfFileMerger
 
 
 def get_input_files(input_dir='input_files'):
@@ -8,6 +9,22 @@ def get_input_files(input_dir='input_files'):
     Ignore all files lacking a .pdf extension.
     """
     return [file_path for file_path in scandir(input_dir) if file_path.name.endswith('.pdf')]
+
+
+def merge_pdfs(files):
+    """Combine the provided PDFs in the order that they appear.
+
+    Arguments:
+        files (list): Path-like objects that point to PDFs to be merged.
+    """
+    pdf_merger = PdfFileMerger()
+    for file in files:
+        # Add each PDF onto the end of the preceding one.
+        with open(file.path, 'rb') as infile:
+            pdf_merger.append(infile)
+        # todo: Add post-merge renaming capability.
+        with open('output_file.pdf', 'wb') as outfile:
+            pdf_merger.write(outfile)
 
 
 def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1):
