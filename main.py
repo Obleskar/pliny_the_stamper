@@ -25,7 +25,7 @@ def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1
         list: Tuples with the filename and a corresponding boolean success indicator.
     """
     number_machine = Marisol(prefix=prefix, fill=backfill_zeroes, start=start_no)
-    for file in files:
+    for file.path in files:
         number_machine.append(file)
     # Export numbered PDFs, named for their first bates number.
     status = number_machine.save()
