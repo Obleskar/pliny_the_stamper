@@ -1,5 +1,5 @@
-from os import scandir
 from marisol import Marisol
+from os import scandir
 
 
 def get_input_files(input_dir='input_files'):
