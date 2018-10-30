@@ -18,14 +18,14 @@ def merge_pdfs(files):
         files (list): Path-like objects that point to PDFs to be merged.
     """
     pdf_merger = PdfFileMerger()
-    for file in files:
+    # todo: Add post-merge renaming capability.
+    with open('output_file.pdf', 'wb') as outfile:
         # Add each PDF onto the end of the preceding one.
-        with open(file.path, 'rb') as infile:
-            pdf_merger.append(infile)
-        # todo: Add post-merge renaming capability.
-        with open('output_file.pdf', 'wb') as outfile:
+        for file in files:
+            # Files have to remain open until the pdf_merger writes the output file.
+            pdf_merger.append(open(file.path, 'rb'))
             # todo: Output merged PDFs to a parameter-defined directory.
-            pdf_merger.write(outfile)
+        pdf_merger.write(outfile)
 
 
 def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1):
