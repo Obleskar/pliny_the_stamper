@@ -16,6 +16,7 @@ def merge_pdfs(files):
 
     Arguments:
         files (list): Path-like objects that point to PDFs to be merged.
+            Use :func:`~main.get_input_files` to make requests.
     """
     pdf_merger = PdfFileMerger()
     # todo: Add post-merge renaming capability.
