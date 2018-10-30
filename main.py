@@ -51,4 +51,3 @@ def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1
     # Log the names of the files processed and their statuses (ex. ('file_one': True))
     print(f'Result: {status}')
     return status
-
