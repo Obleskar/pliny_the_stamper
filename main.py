@@ -26,6 +26,7 @@ def merge_pdfs(files):
             pdf_merger.append(open(file.path, 'rb'))
             # todo: Output merged PDFs to a parameter-defined directory.
         pdf_merger.write(outfile)
+    return 'output_file.pdf'
 
 
 def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1):
@@ -50,3 +51,4 @@ def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1
     # Log the names of the files processed and their statuses (ex. ('file_one': True))
     print(f'Result: {status}')
     return status
+
