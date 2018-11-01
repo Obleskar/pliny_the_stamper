@@ -15,7 +15,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'pliny = pliny:cli'
+            'pliny = pliny:pliny_global'
         ]
     }
 )
