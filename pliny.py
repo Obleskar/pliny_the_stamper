@@ -1,7 +1,8 @@
 from click import command, option, echo, argument, File, group, make_pass_decorator
+from datetime import datetime
 from os import getcwd
 
-from main import apply_numbering, merge_pdfs
+from main import apply_numbering, get_input_files, merge_pdfs
 
 
 class Config(object):
@@ -15,9 +16,10 @@ pass_config = make_pass_decorator(Config, ensure=True)
 
 
 @group()
+@option('-o', '-outfile_name', type=File('w'), default=f'{datetime.now()}_pliny_doc.pdf', required=False)
 @option('-v', '--verbose', is_flag=True)
 @pass_config
-def pliny_global(config, verbose):
+def pliny_global(config, verbose, out):
     """Merge and/or bates number PDF files.
 
     Example: pliny merge
@@ -29,9 +31,9 @@ def pliny_global(config, verbose):
 
 @pliny_global.command()
 @option('-p', '--path', default=None, help='Source directory containing the PDFs.')
-@argument('outfile_name', type=File('w'), default='merged_file.pdf', required=False)
+# @argument('outfile_name', type=File('w'), default='merged_file.pdf', required=False)
 @pass_config
-def merge(config, path, outfile_name):
+def merge(config, path):
     """Combine the specified PDFs."""
     config.merge = True
     if config.verbose:
@@ -40,7 +42,6 @@ def merge(config, path, outfile_name):
 
 @pliny_global.command()
 @option('--string', default='World', help='The thing that is greeted.')
-@argument('out', type=File('w'), default='-', required=False)
 @pass_config
 def number(config, string, out):
     """Apply bates numbers to the top right corner of each page in the specified PDF(s)."""
