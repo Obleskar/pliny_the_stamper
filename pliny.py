@@ -34,7 +34,7 @@ def pliny_global(config, verbose):
 def merge(config, path, outfile_name):
     """Combine the specified PDFs."""
     if config.verbose:
-       echo(f'Combining the specified PDFs from {path} into {outfile_name}')
+       echo(f'Combined the specified PDFs from {path} into {outfile_name}')
 
 
 @pliny_global.command()
