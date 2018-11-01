@@ -28,11 +28,12 @@ def pliny_global(config, verbose):
 
 
 @pliny_global.command()
-@option('p', '--path', default=None, help='Source directory containing the PDFs.')
-@argument('outfile_name', type=File('w'), default='merged_file.pdf', required=False, help='Name for the output file.')
+@option('-p', '--path', default=None, help='Source directory containing the PDFs.')
+@argument('outfile_name', type=File('w'), default='merged_file.pdf', required=False)
 @pass_config
 def merge(config, path, outfile_name):
     """Combine the specified PDFs."""
+    config.merge = True
     if config.verbose:
        echo(f'Combined the specified PDFs from {path} into {outfile_name}')
 
@@ -42,9 +43,7 @@ def merge(config, path, outfile_name):
 @argument('out', type=File('w'), default='-', required=False)
 @pass_config
 def number(config, string, out):
-    """Apply bates numbers to the top right corner of each page in the specified PDF(s).
-
-
-    """
+    """Apply bates numbers to the top right corner of each page in the specified PDF(s)."""
+    config.number = True
     if config.verbose:
         echo(f'Doubly verbose me lord')
