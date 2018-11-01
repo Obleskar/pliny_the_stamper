@@ -29,12 +29,12 @@ def pliny_global(config, verbose):
 
 @pliny_global.command()
 @option('p', '--path', default=None, help='Source directory containing the PDFs.')
-@argument('name', type=File('w'), default='merged_file.pdf', required=False, help='Name for the output file.')
+@argument('outfile_name', type=File('w'), default='merged_file.pdf', required=False, help='Name for the output file.')
 @pass_config
-def merge(config, path, name):
+def merge(config, path, outfile_name):
     """Combine the specified PDFs."""
     if config.verbose:
-       echo(f'Combining the specified PDFs from {path} into {name}')
+       echo(f'Combining the specified PDFs from {path} into {outfile_name}')
 
 
 @pliny_global.command()
