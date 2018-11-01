@@ -1,0 +1,4 @@
+# Development Notes
+
+### Edit Files Without Reinstalling
+pip install --editable .
