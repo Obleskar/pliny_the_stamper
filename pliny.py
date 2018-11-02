@@ -16,6 +16,7 @@ pass_config = make_pass_decorator(Config, ensure=True)
 
 
 @group()
+@option('-p', '--path', default='.', help='Path to the directory containing the PDFs.', required=False)
 @option('-o', '--outfile_name', type=File('w'), default=f'{datetime.now()}_pliny_doc.pdf', required=False)
 @option('-v', '--verbose', is_flag=True)
 @pass_config
@@ -31,7 +32,6 @@ def pliny_global(config, verbose, outfile_name):
 
 
 @pliny_global.command()
-@option('-p', '--path', default=None, help='Source directory containing the PDFs.')
 @pass_config
 def merge(config, path):
     """Combine the specified PDFs."""
