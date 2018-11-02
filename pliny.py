@@ -16,22 +16,22 @@ pass_config = make_pass_decorator(Config, ensure=True)
 
 
 @group()
-@option('-o', '-outfile_name', type=File('w'), default=f'{datetime.now()}_pliny_doc.pdf', required=False)
+@option('-o', '--outfile_name', type=File('w'), default=f'{datetime.now()}_pliny_doc.pdf', required=False)
 @option('-v', '--verbose', is_flag=True)
 @pass_config
-def pliny_global(config, verbose, out):
+def pliny_global(config, verbose, outfile_name):
     """Merge and/or bates number PDF files.
 
     Example: pliny merge
     """
     config.verbose = verbose
+    config.outfile_name = outfile_name
     if verbose:
         echo('Verbose mode active.')
 
 
 @pliny_global.command()
 @option('-p', '--path', default=None, help='Source directory containing the PDFs.')
-# @argument('outfile_name', type=File('w'), default='merged_file.pdf', required=False)
 @pass_config
 def merge(config, path):
     """Combine the specified PDFs."""
