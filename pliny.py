@@ -35,8 +35,9 @@ def pliny_global(config, path, outfile_name, verbose):
 
     Example: pliny merge
     """
-    config.verbose = verbose
+    config.path = path
     config.outfile_name = outfile_name
+    config.verbose = verbose
     if verbose:
         echo('Verbose mode active.')
 
