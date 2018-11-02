@@ -1,4 +1,6 @@
+__pycache__/
 .idea/
 input_files/
 output/
 output_file.pdf
+pliny_the_stamper.egg-info/
