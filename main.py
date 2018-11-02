@@ -1,12 +1,16 @@
 from marisol import Marisol
-from os import scandir
+from os import getcwd, scandir
 from PyPDF2 import PdfFileMerger
 
 
-def get_input_files(input_dir='input_files'):
+def get_input_files(input_dir=getcwd()):
     """Get a list of path-like objects that represent the files to be ingested.
 
-    Ignore all files lacking a .pdf extension.
+    Ignores all files lacking a .pdf extension.
+
+    Arguments:
+        input_dir (str): Path to the directory containing the PDFs. Defaults to the current working directory.
+        - The current working directory is the path to the directory in which the script is called.
     """
     return [file_path for file_path in scandir(input_dir) if file_path.name.endswith('.pdf')]
 
