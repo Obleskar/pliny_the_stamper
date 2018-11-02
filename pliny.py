@@ -61,3 +61,4 @@ def number(config, string, out):
     config.number = True
     if config.verbose:
         echo(f'Numbering PDFs.')
+    merge_pdfs(files=config.files)
