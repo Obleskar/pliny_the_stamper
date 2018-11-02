@@ -30,16 +30,18 @@ pass_config = make_pass_decorator(Config, ensure=True)
         is_flag=True,
         required=False)
 @pass_config
-def pliny_global(config, path, outfile_name, verbose):
+def pliny_global(config, input_path, outfile_name, verbose):
     """Merge and/or bates number PDF files.
 
     Example: pliny merge
     """
-    config.path = path
+    config.path = input_path
     config.outfile_name = outfile_name
     config.verbose = verbose
     if verbose:
         echo('Verbose mode active.')
+    # Get a list of input PDF files from the provided directory.
+    config.files = [filename for filename in get_input_files(input_path)]
 
 
 @pliny_global.command()
@@ -48,7 +50,7 @@ def merge(config, path):
     """Combine the specified PDFs."""
     config.merge = True
     if config.verbose:
-       echo(f'Combined the specified PDFs from {path} into {outfile_name}')
+       echo(f'Combining the specified PDFs from {path} into {outfile_name}')
 
 
 @pliny_global.command()
@@ -58,4 +60,4 @@ def number(config, string, out):
     """Apply bates numbers to the top right corner of each page in the specified PDF(s)."""
     config.number = True
     if config.verbose:
-        echo(f'Doubly verbose me lord')
+        echo(f'Numbering PDFs.')
