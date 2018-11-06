@@ -51,6 +51,7 @@ def merge(config, path):
     config.merge = True
     if config.verbose:
        echo(f'Combining the specified PDFs from {path} into {outfile_name}')
+    merge_pdfs(files=config.files)
 
 
 @pliny_global.command()
@@ -61,4 +62,3 @@ def number(config, string, out):
     config.number = True
     if config.verbose:
         echo(f'Numbering PDFs.')
-    merge_pdfs(files=config.files)
