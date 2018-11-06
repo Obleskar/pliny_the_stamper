@@ -36,7 +36,7 @@ def merge_pdfs(files, outfile_name, destination_path):
             print(f'Appended {file.name}.')
         pdf_merger.write(outfile)
         print(f'Created {outfile_name} at {destination_path}.')
-    return 'output_file.pdf'
+    return True
 
 
 def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1):
