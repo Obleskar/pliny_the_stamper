@@ -25,7 +25,6 @@ pass_config = make_pass_decorator(Config, ensure=True)
         help='Path to the desired output directory.',
         required=False)
 @option('-o', '--outfile_name',
-        type=File('w'),
         default=f'{datetime.now()}_pliny_doc.pdf',
         help='Desired name for the output file.',
         required=False)
