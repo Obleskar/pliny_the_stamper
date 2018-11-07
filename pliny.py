@@ -16,12 +16,15 @@ pass_config = make_pass_decorator(Config, ensure=True)
 
 
 @group()
-@option('-p', '--path',
+@option('-p', '--input_path',
         default='.',
         help='Path to the directory containing the PDFs.',
         required=False)
+@option('-d', '--output_dir',
+        default='.',
+        help='Path to the desired output directory.',
+        required=False)
 @option('-o', '--outfile_name',
-        type=File('w'),
         default=f'{datetime.now()}_pliny_doc.pdf',
         help='Desired name for the output file.',
         required=False)
@@ -30,12 +33,13 @@ pass_config = make_pass_decorator(Config, ensure=True)
         is_flag=True,
         required=False)
 @pass_config
-def pliny_global(config, input_path, outfile_name, verbose):
+def pliny_global(config, input_path, output_dir, outfile_name, verbose):
     """Merge and/or bates number PDF files.
 
     Example: pliny merge
     """
     config.path = input_path
+    config.outfile_dir = output_dir
     config.outfile_name = outfile_name
     config.verbose = verbose
     if verbose:
@@ -46,11 +50,14 @@ def pliny_global(config, input_path, outfile_name, verbose):
 
 @pliny_global.command()
 @pass_config
-def merge(config, path):
+def merge(config):
     """Combine the specified PDFs."""
     config.merge = True
     if config.verbose:
-       echo(f'Combining the specified PDFs from {path} into {outfile_name}')
+        echo(f'Combining the specified PDFs from {config.input_path} into {config.outfile_name}')
+    merge_pdfs(files=config.files, outfile_name=config.outfile_name, destination_path=config.outfile_dir)
+    if config.verbose:
+        echo('Done merging PDFs.')
 
 
 @pliny_global.command()
