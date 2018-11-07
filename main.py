@@ -51,7 +51,7 @@ def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1
         start_no (int): Number to start the count on. Defaults to 1.
 
     Returns:
-        list: Tuples with the filename and a corresponding boolean success indicator.
+        (list) Tuples with the filename and a corresponding boolean success indicator.
     """
     number_machine = Marisol(prefix=prefix, fill=backfill_zeroes, start=start_no)
     for file in files:
