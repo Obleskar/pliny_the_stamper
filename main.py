@@ -26,7 +26,6 @@ def merge_pdfs(files, outfile_name, destination_path):
         destination_path (str, optional): Output directory path.
     """
     pdf_merger = PdfFileMerger()
-    # todo: Add post-merge renaming capability.
     # todo: (Test) Output merged PDFs to a parameter-defined directory.
     with open(join(destination_path, outfile_name), 'wb') as outfile:
         # Add each PDF onto the end of the preceding one.
