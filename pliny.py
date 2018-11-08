@@ -63,7 +63,7 @@ def merge(config):
 @pliny_global.command()
 @option('--prefix', default='BATES_NUMBER_', help='The thing that is greeted.')
 @pass_config
-def number(config, prefix, out):
+def number(config, prefix):
     """Apply bates numbers to the top right corner of each page in the specified PDF(s)."""
     config.number = True
     if config.verbose:
