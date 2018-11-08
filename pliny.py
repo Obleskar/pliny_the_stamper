@@ -20,6 +20,7 @@ pass_config = make_pass_decorator(Config, ensure=True)
         default='.',
         help='Path to the directory containing the PDFs.',
         required=False)
+# todo: Use type=click.Path()
 @option('-d', '--output_dir',
         default='.',
         help='Path to the desired output directory.',
