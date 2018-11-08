@@ -61,10 +61,14 @@ def merge(config):
 
 
 @pliny_global.command()
-@option('--string', default='World', help='The thing that is greeted.')
+@option('--prefix', default='BATES_NUMBER_', help='The thing that is greeted.')
 @pass_config
-def number(config, string, out):
+def number(config, prefix):
     """Apply bates numbers to the top right corner of each page in the specified PDF(s)."""
     config.number = True
     if config.verbose:
         echo(f'Numbering PDFs.')
+    result = apply_numbering(files=config.files)
+    if config.verbose:
+        echo('Done numbering PDFs:\n' +
+             '\n'.join([f'{filename}->{status}' for filename, status in result]))
