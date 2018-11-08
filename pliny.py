@@ -74,4 +74,4 @@ def number(config, prefix):
     config.intermediate_files = apply_numbering(files=config.files)
     if config.verbose:
         echo('Done numbering PDFs:\n' +
-             '\n'.join([f'{filename}->{status}' for filename, status in result]))
+             '\n'.join([f'{filename}->{status}' for filename, status in config.intermediate_files]))
