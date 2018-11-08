@@ -27,7 +27,7 @@ def merge_pdfs(files, outfile_name, destination_path):
     """
     pdf_merger = PdfFileMerger()
     # todo: Add post-merge renaming capability.
-    # todo: Output merged PDFs to a parameter-defined directory.
+    # todo: (Test) Output merged PDFs to a parameter-defined directory.
     with open(join(destination_path, outfile_name), 'wb') as outfile:
         # Add each PDF onto the end of the preceding one.
         for file in files:
@@ -36,7 +36,7 @@ def merge_pdfs(files, outfile_name, destination_path):
             print(f'Appended {file.name}.')
         pdf_merger.write(outfile)
         print(f'Created {outfile_name} at {destination_path}.')
-    return True
+    return
 
 
 def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1):
