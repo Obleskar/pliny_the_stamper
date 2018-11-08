@@ -42,6 +42,7 @@ def pliny_global(config, input_path, output_dir, outfile_name, verbose):
     config.outfile_dir = output_dir
     config.outfile_name = outfile_name
     config.verbose = verbose
+    config.intermediate_files = None
     if verbose:
         echo('Verbose mode active.')
     # Get a list of input PDF files from the provided directory.
@@ -55,7 +56,9 @@ def merge(config):
     config.merge = True
     if config.verbose:
         echo(f'Combining the specified PDFs from {config.input_path} into {config.outfile_name}')
-    merge_pdfs(files=config.files, outfile_name=config.outfile_name, destination_path=config.outfile_dir)
+    config.intermediate_files = merge_pdfs(files=config.files,
+                                          outfile_name=config.outfile_name,
+                                          destination_path=config.outfile_dir)
     if config.verbose:
         echo('Done merging PDFs.')
 
@@ -68,7 +71,7 @@ def number(config, prefix):
     config.number = True
     if config.verbose:
         echo(f'Numbering PDFs.')
-    result = apply_numbering(files=config.files)
+    config.intermediate_files = apply_numbering(files=config.files)
     if config.verbose:
         echo('Done numbering PDFs:\n' +
              '\n'.join([f'{filename}->{status}' for filename, status in result]))
