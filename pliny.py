@@ -57,8 +57,8 @@ def merge(config):
     if config.verbose:
         echo(f'Combining the specified PDFs from {config.input_path} into {config.outfile_name}')
     config.intermediate_files = merge_pdfs(files=config.files,
-                                          outfile_name=config.outfile_name,
-                                          destination_path=config.outfile_dir)
+                                           outfile_name=config.outfile_name,
+                                           destination_path=config.outfile_dir)
     if config.verbose:
         echo('Done merging PDFs.')
 
