@@ -54,9 +54,11 @@ def pliny_global(config, input_path, output_dir, outfile_name, verbose):
 def merge(config):
     """Combine the specified PDFs."""
     config.merge = True
+    input_files = config.intermediate_files if config.intermediate_files else config.files
     if config.verbose:
-        echo(f'Combining the specified PDFs from {config.input_path} into {config.outfile_name}')
-    config.intermediate_files = merge_pdfs(files=config.files,
+        echo(f'Combining the specified PDFs:\n{", ".join([file for file in input_files])} '
+             f'into {config.outfile_name}.')
+    config.intermediate_files = merge_pdfs(files=input_files,
                                            outfile_name=config.outfile_name,
                                            destination_path=config.outfile_dir)
     if config.verbose:
@@ -69,8 +71,9 @@ def merge(config):
 def number(config, prefix):
     """Apply bates numbers to the top right corner of each page in the specified PDF(s)."""
     config.number = True
+    input_files = config.intermediate_files if config.intermediate_files else config.files
     if config.verbose:
-        echo(f'Numbering PDFs.')
+        echo(f'Numbering PDFs:\n{", ".join([file for file in input_files])}.')
     config.intermediate_files = apply_numbering(files=config.files)
     if config.verbose:
         echo('Done numbering PDFs:\n' +
