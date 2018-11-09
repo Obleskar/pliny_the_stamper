@@ -11,7 +11,6 @@ def get_input_files(input_dir=getcwd()):
 
     Arguments:
         input_dir (str): Path to the directory containing the PDFs. Defaults to the current working directory.
-        - The current working directory is the path to the directory in which the script is called.
     """
     return [file_path for file_path in scandir(input_dir) if file_path.name.endswith('.pdf')]
 
