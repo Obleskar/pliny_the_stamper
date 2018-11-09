@@ -1,6 +1,5 @@
-from click import command, option, echo, argument, File, group, make_pass_decorator
+from click import File, Path, echo, group, make_pass_decorator, option
 from datetime import datetime
-from os import getcwd
 
 from main import apply_numbering, get_input_files, merge_pdfs
 
