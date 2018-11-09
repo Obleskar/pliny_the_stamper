@@ -28,7 +28,6 @@ def merge_pdfs(files, outfile_name, destination_path):
         (str): Path to the created file.
     """
     pdf_merger = PdfFileMerger()
-    # todo: (Test) Output merged PDFs to a parameter-defined directory.
     outfile_path = join(destination_path, outfile_name)
     with open(outfile_path, 'wb')as outfile:
         # Add each PDF onto the end of the preceding one.
