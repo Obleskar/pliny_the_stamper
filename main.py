@@ -11,7 +11,6 @@ def get_input_files(input_dir=getcwd()):
 
     Arguments:
         input_dir (str): Path to the directory containing the PDFs. Defaults to the current working directory.
-        - The current working directory is the path to the directory in which the script is called.
     """
     return [file_path for file_path in scandir(input_dir) if file_path.name.endswith('.pdf')]
 
@@ -24,11 +23,13 @@ def merge_pdfs(files, outfile_name, destination_path):
             Use :func:`~main.get_input_files` to make requests.
         outfile_name (str, optional): Name for the resulting output file.
         destination_path (str, optional): Output directory path.
+
+    Returns:
+        (str): Path to the created file.
     """
     pdf_merger = PdfFileMerger()
-    # todo: Add post-merge renaming capability.
-    # todo: Output merged PDFs to a parameter-defined directory.
-    with open(join(destination_path, outfile_name), 'wb') as outfile:
+    outfile_path = join(destination_path, outfile_name)
+    with open(outfile_path, 'wb')as outfile:
         # Add each PDF onto the end of the preceding one.
         for file in files:
             # Files have to remain open until the pdf_merger writes the output file.
@@ -36,7 +37,7 @@ def merge_pdfs(files, outfile_name, destination_path):
             print(f'Appended {file.name}.')
         pdf_merger.write(outfile)
         print(f'Created {outfile_name} at {destination_path}.')
-    return True
+    return outfile_path
 
 
 def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1):
