@@ -5,7 +5,7 @@ from main import apply_numbering, get_input_files, merge_pdfs
 
 
 class Config(object):
-    """Configuration object with attributes that can incorporate with commands."""
+    """Configuration object with attributes that are accessible by commands."""
     def __init__(self):
         self.verbose = False
 
