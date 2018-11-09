@@ -25,7 +25,7 @@ def merge_pdfs(files, outfile_name, destination_path):
         destination_path (str, optional): Output directory path.
 
     Returns:
-        (list): List containing one string of the path to the created file.
+        (str): Path to the created file.
     """
     pdf_merger = PdfFileMerger()
     # todo: (Test) Output merged PDFs to a parameter-defined directory.
@@ -38,7 +38,7 @@ def merge_pdfs(files, outfile_name, destination_path):
             print(f'Appended {file.name}.')
         pdf_merger.write(outfile)
         print(f'Created {outfile_name} at {destination_path}.')
-    return [outfile_path]
+    return outfile_path
 
 
 def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1):
