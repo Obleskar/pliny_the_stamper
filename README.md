@@ -1,7 +1,7 @@
 # Pliny the Stamper
 A command line program for merging multiple PDFs and bates numbering their pages.
 
-### Installation
+## Installation
 1. Copy the project into a new directory called "pliny_the_stamper."
     ```console
     user@pc:~$ git clone https://github.com/Obleskar/pliny_the_stamper.git
@@ -34,7 +34,7 @@ A command line program for merging multiple PDFs and bates numbering their pages
       merge   Combine the specified PDFs.
       number  Apply bates numbers to the top right corner of each page in the...
     ```
-### Todo
+## Todo
 - General
     - Enquote file names
     - Ensure that the output of "merge" and "number" can be piped to the other
