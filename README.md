@@ -20,15 +20,15 @@ A command line program for merging multiple PDFs and bates numbering their pages
     Usage: pliny [OPTIONS] COMMAND [ARGS]...
      
       Merge and/or bates number PDF files.
-    
+     
       Example: pliny merge
-    
+     
     Options:
       -p, --input_path TEXT    Path to the directory containing the PDFs.
       -d, --output_dir TEXT    Path to the desired output directory.
       -o, --outfile_name TEXT  Desired name for the output file.
-     -v, --verbose
-     --help                   Show this message and exit.
+      -v, --verbose
+      --help                   Show this message and exit.
 
     Commands:
       merge   Combine the specified PDFs.
