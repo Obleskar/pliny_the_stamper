@@ -34,6 +34,7 @@ A command line program for merging multiple PDFs and bates numbering their pages
       merge   Combine the specified PDFs.
       number  Apply bates numbers to the top right corner of each page in the...
     ```
+
 ## Todo
 - General
     - [ ] Enquote file names
