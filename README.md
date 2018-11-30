@@ -3,20 +3,20 @@ A command line program for merging multiple PDFs and bates numbering their pages
 
 ### Installation
 1. Copy the project into a new directory called "pliny_the_stamper."
-    ```sh
-    git clone https://github.com/Obleskar/pliny_the_stamper.git
+    ```console
+    user@pc:~$ git clone https://github.com/Obleskar/pliny_the_stamper.git
     ```      
 2. Navigate into the project.
-    ```sh
-    cd pliny_the_stamper
+    ```console
+    user@pc:~$ cd pliny_the_stamper
     ```
 3. Install the package.
-    ```sh
-    pip install .
+    ```console
+    user@pc:~$ pip install .
     ```
 4. Test the installation.
     ```console
-    user@pc pliny --help
+    user@pc:~$ pliny --help
     Usage: pliny [OPTIONS] COMMAND [ARGS]...
      
       Merge and/or bates number PDF files.
