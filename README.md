@@ -10,7 +10,7 @@ A command line program for merging multiple PDFs and bates numbering their pages
     ```console
     user@pc:~$ cd pliny_the_stamper
     ```
-3. Install the package.
+3. Install the Pliny the Stamper.
     ```console
     user@pc:~$ pip install .
     ```
