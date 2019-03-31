@@ -1,7 +1,7 @@
 from click import File, Path, echo, group, make_pass_decorator, option
 from datetime import datetime
 
-from main import apply_numbering, get_input_files, merge_pdfs
+from main import apply_numbering, get_input_files, merge_pdfs, pagify_pdfs
 
 
 class Config(object):
@@ -88,6 +88,7 @@ def pagify(config):
     """
     if config.verbose:
         echo(f'Pagifying PDFs:\n{", ".join([file.name for file in config.files])}.')
+        pagify_pdfs([file.path for file in config.files])
         ### Pagification code
     if config.verbose:
         echo('Done pagifying PDFs:\n')

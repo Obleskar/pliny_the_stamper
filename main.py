@@ -1,7 +1,7 @@
 from marisol import Marisol
 from os import getcwd, scandir
 from os.path import join
-from PyPDF2 import PdfFileMerger
+from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 
 
 def get_input_files(input_dir=getcwd()):
@@ -62,3 +62,10 @@ def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1
     # Log the names of the files processed and their statuses (ex. ('file_one': True))
     print(f'Result: {status}')
     return status
+
+
+def pagify_pdfs(files):
+    """Iterate through each provided PDF file and create a new PDF file from each of its pages."""
+    for pdf_file_path in files:
+        pdf_file = PdfFileReader(stream=pdf_file_path)
+        print(pdf_file.getNumPages())
