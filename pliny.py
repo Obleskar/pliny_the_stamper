@@ -73,3 +73,17 @@ def number(config, prefix):
     if config.verbose:
         echo('Done numbering PDFs:\n' +
              '\n'.join([f'{file_name}->{status}' for file_name, status in result]))
+
+@pliny_global.command()
+@pass_config
+def pagify(config):
+    """Create a new PDF file for each page of the each specified PDF file(s).
+
+    Create a new directory named after the input PDF file and copy each of its pages as a new output PDF file. Name
+    each extracted file by combining the name of its parent and its origin page.
+    """
+    if config.verbose:
+        echo(f'Pagifying PDFs:\n{", ".join([file.name for file in config.files])}.')
+        ### Pagification code
+    if config.verbose:
+        echo('Done pagifying PDFs:\n')
