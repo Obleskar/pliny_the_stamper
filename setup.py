@@ -12,7 +12,7 @@ setup(
     long_description_content_type='test/markdown',
     url='https://github.com/Obleskar/pliny_the_stamper.git',
     py_modules=['main', 'pliny'],
-    install_requires=['os', 'Click', 'marisol', 'PyPDF2'],
+    install_requires=['Click', 'marisol', 'PyPDF2'],
     packages=find_packages(),
     entry_points={
         'console_scripts': [
