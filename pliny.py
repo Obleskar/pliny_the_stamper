@@ -81,6 +81,10 @@ def pagify(config):
 
     Create a new directory named after the input PDF file and copy each of its pages as a new output PDF file. Name
     each extracted file by combining the name of its parent and its origin page.
+
+    Example:
+        A file named `my file.pdf` would be pagified into a directory named `my file_pagified`. The first file inside of
+        this directory would be named `my_file_pagified_1.pdf`
     """
     if config.verbose:
         echo(f'Pagifying PDFs:\n{", ".join([file.name for file in config.files])}.')
