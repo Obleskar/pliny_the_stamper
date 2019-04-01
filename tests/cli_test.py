@@ -51,4 +51,4 @@ def test_pagifier(output_file_dir=path.join(getcwd(), 'output_files')):
     # Ensure that a correctly named output directory's created for each input file.
     output_dirs = [directory.name for directory in scandir(output_file_dir) if path.isdir(directory)]
     assert 'argparse' in output_dirs
-    assert 'pocco click' in output_dirs
+    assert 'pocoo click' in output_dirs
