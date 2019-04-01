@@ -6,7 +6,7 @@ with open('README.md', 'r') as infile:
 
 setup(
     name='pliny_the_stamper',
-    version='1.1.0',
+    version='1.2.0',
     description='Merge and bates number PDFs on the command line.',
     long_description=long_description,
     long_description_content_type='test/markdown',
