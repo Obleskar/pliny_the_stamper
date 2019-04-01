@@ -1,4 +1,5 @@
 from click.testing import CliRunner
+from os import getcwd, path, scandir
 from pytest import fixture
 
 from pliny import pliny_global, pagify
@@ -29,7 +30,7 @@ def test_help():
         assert intended_line == actual_line
 
 
-def test_pagifier():
+def test_pagifier(output_file_dir=path.join(getcwd(), 'output_files')):
     """Ensure that the pagifier command performs pagewise extraction of the provided PDF file.
 
     The test input files `argparse.pdf` and `pocco click.pdf` should become new directories `argparse` and
@@ -46,5 +47,8 @@ def test_pagifier():
                                               '-d', 'output_files',
                                               '-v',
                                               'pagify'])
+        output_dirs = [directory for directory in scandir(output_file_dir) if path.isdir(directory)]
+        assert 'argparse' in output_dirs
+        assert 'pocco click' in output_dirs
         assert result.output.startswith(intended_text)
 
