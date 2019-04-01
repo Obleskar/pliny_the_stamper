@@ -1,6 +1,6 @@
 from marisol import Marisol
-from os import getcwd, scandir
-from os.path import join
+from os import getcwd, mkdir, scandir
+from os.path import join, splitext
 from PyPDF2 import PdfFileMerger, PdfFileReader, PdfFileWriter
 
 
@@ -64,8 +64,27 @@ def apply_numbering(files, prefix='BATES_NUMBER_', backfill_zeroes=6, start_no=1
     return status
 
 
-def pagify_pdfs(files):
-    """Iterate through each provided PDF file and create a new PDF file from each of its pages."""
-    for pdf_file_path in files:
-        pdf_file = PdfFileReader(stream=pdf_file_path)
-        print(pdf_file.getNumPages())
+def pagify_pdfs(files, destination_path):
+    """Iterate through each provided PDF file and create a new PDF file from each of its pages.
+
+    Arguments:
+        destination_path (str, optional): Output directory path.
+    """
+    for file in files:
+        # Create the output directory name by removing the file's extension.
+        out_dir_name = splitext(file.name)[0]
+        out_dir_path = join(destination_path, out_dir_name)
+        try:
+            mkdir(path=out_dir_path)
+        except FileExistsError as e:
+            print(f'The output directory {out_dir_name} for {file.name} already exists in {destination_path}.\n'
+                  f'Please delete the existing output directory or choose a different output destination.\n{e}')
+        # opened_file = PdfFileReader(file)
+        # for page_number in range(opened_file.getNumPages()):
+        #     new_file = PdfFileWriter()
+        #     new_file.addPage(opened_file.getPage(page_number))
+        #     # Reuse the extensionless destination directory name to name the output file.
+        #     new_filename = out_dir_name + '_pagified_' + page_number + 1 + '.pdf'
+        #     # Add the singular PDF page as a new file in the output directory.
+        #     with open(out_dir_path) as single_page_file:
+        #         new_file.write(single_page_file)

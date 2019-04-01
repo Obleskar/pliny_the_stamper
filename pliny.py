@@ -89,7 +89,6 @@ def pagify(config):
     """
     if config.verbose:
         echo(f'Pagifying PDFs:\n{", ".join([file.name for file in config.files])}.')
-        pagify_pdfs([file.path for file in config.files])
-        ### Pagification code
+        pagify_pdfs([file for file in config.files], destination_path=config.outfile_dir)
     if config.verbose:
         echo('Done pagifying PDFs:\n')
