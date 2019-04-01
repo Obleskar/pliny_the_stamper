@@ -79,12 +79,12 @@ def pagify_pdfs(files, destination_path):
         except FileExistsError as e:
             print(f'The output directory {out_dir_name} for {file.name} already exists in {destination_path}.\n'
                   f'Please delete the existing output directory or choose a different output destination.\n{e}')
-        # opened_file = PdfFileReader(file)
-        # for page_number in range(opened_file.getNumPages()):
-        #     new_file = PdfFileWriter()
-        #     new_file.addPage(opened_file.getPage(page_number))
-        #     # Reuse the extensionless destination directory name to name the output file.
-        #     new_filename = out_dir_name + '_pagified_' + page_number + 1 + '.pdf'
-        #     # Add the singular PDF page as a new file in the output directory.
-        #     with open(out_dir_path) as single_page_file:
-        #         new_file.write(single_page_file)
+        opened_file = PdfFileReader(file.path)
+        for page_number in range(opened_file.getNumPages()):
+            new_file = PdfFileWriter()
+            new_file.addPage(opened_file.getPage(page_number))
+            # Reuse the extensionless destination directory name to name the output file.
+            new_filename = f'{out_dir_name}_pagified_{page_number + 1}.pdf'
+            # Add the singular PDF page as a new file in the output directory.
+            with open(join(out_dir_path, new_filename), 'wb') as single_page_file:
+                new_file.write(single_page_file)
