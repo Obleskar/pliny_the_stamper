@@ -3,6 +3,7 @@ from pytest import fixture
 
 from pliny import pliny_global, pagify
 
+
 def test_help():
     """"Ensure that the help documentation prints correctly.
 
