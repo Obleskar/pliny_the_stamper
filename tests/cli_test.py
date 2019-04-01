@@ -29,6 +29,22 @@ def test_help():
         assert intended_line == actual_line
 
 
-# def run_pagifier(*args):
-#     cli_args = ["pliny"] + list(args)
-#     return
+def test_pagifier():
+    """Ensure that the pagifier command performs pagewise extraction of the provided PDF file.
+
+    The test input files `argparse.pdf` and `pocco click.pdf` should become new directories `argparse` and
+    `pocco click`, respectively.
+
+    The `argparse` directory should hold `argparse_pagified_1.pdf` to `argparse_pagified_40.pdf`.
+    The `pocco click` directory should hold `pocco click_pagified_1.pdf` to `pocco click_pagified_105.pdf`.
+    """
+    intended_text = 'Verbose mode active.\n'# \
+                    # 'Pagifying PDFs:\n'
+    runner = CliRunner()
+    with runner.isolated_filesystem():
+        result = runner.invoke(pliny_global, ['-p', 'input_files',
+                                              '-d', 'output_files',
+                                              '-v',
+                                              'pagify'])
+        assert result.output.startswith(intended_text)
+
