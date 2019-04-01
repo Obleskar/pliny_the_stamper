@@ -83,6 +83,7 @@ def pagify(config):
     each extracted file by combining the name of its parent and its origin page.
 
     Example:
+        `pliny -p input_files -d output -v pagify`
         A file named `my file.pdf` would be pagified into a directory named `my file_pagified`. The first file inside of
         this directory would be named `my_file_pagified_1.pdf`
     """
