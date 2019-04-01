@@ -1,7 +1,7 @@
 from click import File, Path, echo, group, make_pass_decorator, option
 from datetime import datetime
 
-from main import apply_numbering, get_input_files, merge_pdfs
+from main import apply_numbering, get_input_files, merge_pdfs, pagify_pdfs
 
 
 class Config(object):
@@ -73,3 +73,22 @@ def number(config, prefix):
     if config.verbose:
         echo('Done numbering PDFs:\n' +
              '\n'.join([f'{file_name}->{status}' for file_name, status in result]))
+
+@pliny_global.command()
+@pass_config
+def pagify(config):
+    """Create a new PDF file for each page of the each specified PDF file(s).
+
+    Create a new directory named after the input PDF file and copy each of its pages as a new output PDF file. Name
+    each extracted file by combining the name of its parent and its origin page.
+
+    Example:
+        `pliny -p input_files -d output -v pagify`
+        A file named `my file.pdf` would be pagified into a directory named `my file_pagified`. The first file inside of
+        this directory would be named `my_file_pagified_1.pdf`
+    """
+    if config.verbose:
+        echo(f'Pagifying PDFs:\n{", ".join([file.name for file in config.files])}.')
+        pagify_pdfs([file for file in config.files], destination_path=config.outfile_dir)
+    if config.verbose:
+        echo('Done pagifying PDFs:\n')

@@ -41,6 +41,7 @@ A command line program for merging multiple PDFs and bates numbering their pages
     - [ ] Ensure that the output of "merge" and "number" can be piped to the other
     - [ ] Logging
     - [ ] Test: Output merged PDFs to a provided directory
+    - [ ] Add a progress bar to each command
 - Bates Numbering
     - [ ] Put bates number in top right corner
     - [ ] Accept dynamic bates numbering prefixes
