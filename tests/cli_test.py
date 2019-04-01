@@ -42,13 +42,17 @@ def test_pagifier(output_file_dir=path.join(getcwd(), 'output_files')):
     intended_text = 'Verbose mode active.\n'# \
                     # 'Pagifying PDFs:\n'
     runner = CliRunner()
-    with runner.isolated_filesystem():
-        result = runner.invoke(pliny_global, ['-p', 'input_files',
-                                              '-d', 'output_files',
-                                              '-v',
-                                              'pagify'])
-        output_dirs = [directory for directory in scandir(output_file_dir) if path.isdir(directory)]
-        assert 'argparse' in output_dirs
-        assert 'pocco click' in output_dirs
-        assert result.output.startswith(intended_text)
+    # with runner.isolated_filesystem():
+    #     with open('hello_world.txt', 'w') as outfile:
+    #         outfile.write('test')
+    result = runner.invoke(pliny_global, ['-p', 'input_files',
+                                          '-d', 'output_files',
+                                          '-v',
+                                          'pagify'])
+    # Ensure that the response prompt is correct.
+    assert result.output.startswith(intended_text)
+    # Ensure that a correctly named output directory's created for each input file.
+    output_dirs = [directory.name for directory in scandir(output_file_dir) if path.isdir(directory)]
+    assert 'argparse' in output_dirs
+    assert 'pocco click' in output_dirs
 
