@@ -52,3 +52,4 @@ def test_pagifier(output_file_dir=path.join(getcwd(), 'output_files')):
     output_dirs = [directory.name for directory in scandir(output_file_dir) if path.isdir(directory)]
     assert 'argparse' in output_dirs
     assert 'pocoo click' in output_dirs
+    assert path.isfile(path.join(output_file_dir, 'argparse', 'argparse_pagified_1.pdf'))
