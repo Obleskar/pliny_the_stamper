@@ -34,9 +34,39 @@ A command line program for merging multiple PDFs and bates numbering their pages
       merge   Combine the specified PDFs.
       number  Apply bates numbers to the top right corner of each page in the...
     ```
+## Pagewise Extraction
+Pagewise extraction creates a new PDF file for each page in the provided PDF files.
+
+1. Add new directories for input and output files.
+    ```console
+    user@pc:~/tools/pliny_the_stamper$ mkdir input_files output_files
+    ```
+
+2. Move input files into `input_files`.
+    ```console
+    user@pc:~/tools/pliny_the_stamper$ mv ~/Desktop/input_file_alpha.pdf input_files
+    user@pc:~/tools/pliny_the_stamper$ mv ~/Desktop/input_file_bravo.pdf input_files
+    ```
+    
+3. Perform pagewise extraction
+    ```console
+    user@pc:~/tools/pliny_the_stamper$ pliny -p input_files -d output_files -v pagify
+    ```
+
+4. Find the fruits of your labor in `output_files`.
+    ```console
+    user@pc:~/tools/pliny_the_stamper$ ls output_files/
+    input_file_alpha  input_file_bravo
+    ```
+    ```console
+    user@pc:~/tools/pliny_the_stamper$ cd output_files/input_file_alpha
+    user@pc:~/tools/pliny_the_stamper/output_files/input_file_alpha$ ls
+    input_file_alpha_pagified_1.pdf  input_file_alpha_pagified_2.pdf
+    ```
 
 ## Todo
 - General
+    - [ ] Enable user defined output directories to pagewise extraction commands
     - [ ] Enquote file names
     - [ ] Ensure that the output of "merge" and "number" can be piped to the other
     - [ ] Logging
